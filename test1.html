@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>test 1</title>
+    <style>
+        .grid-column {
+            display: grid;
+            grid-template-columns: 200px auto 300px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .grid-column {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-column">
+        <div>
+            <input id="num" type="text" onkeyup="myFunction()">
+        </div>
+        <div>
+            <select id="type" onchange="myFunction()">
+                <option value="pri">isPrime</option>
+                <option value="fibo">IsFibanacci</option>
+            </select>
+        </div>
+        <div>
+            <p id="ans"></p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        function myFunction() {
+            num = parseInt($('#num').val())
+            if(num < 0){
+                num = 1;
+            }
+            if ($('#type').val() == 'pri') {
+                $('#ans').text(testPrine(num));
+            } else {
+                $('#ans').text(isFibonacci(num));
+            }
+        }
+
+        function testPrine(n) {
+            if (n === 1) {
+                return false;
+            }
+            else if (n === 2) {
+                return true;
+            } else {
+                for (var x = 2; x < n; x++) {
+                    if (n % x === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        function isFibonacci(n) {
+            return isPerfectSquare(5 * n * n + 4) ||
+                isPerfectSquare(5 * n * n - 4);
+        }
+
+        function isPerfectSquare(x) {
+            let s = parseInt(Math.sqrt(x));
+            return (s * s == x);
+        }
+    </script>
+</body>
+
+</html>
